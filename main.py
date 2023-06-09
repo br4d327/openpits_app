@@ -138,7 +138,7 @@ if __name__ == '__main__':
                 table = img_summary(label_latest_dir + file)
                 res_table = pd.concat([res_table, table])
 
-        res_table.reset_index(drop=True)
+        res_table.reset_index(drop=True, inplace=True)
         st.table(res_table)
         st.text('Summary')
         st.table(pd.DataFrame([{'total_files': len(res_table),
