@@ -12,4 +12,5 @@ WORKDIR /model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
+RUN whoiam
 CMD streamlit run main.py
