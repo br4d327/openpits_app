@@ -12,6 +12,7 @@ WORKDIR /model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
+RUN pwd
 RUN sudo chmod 777 data/
 RUN sudo chmod 777 ./
 CMD streamlit run main.py
