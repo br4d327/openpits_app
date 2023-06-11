@@ -12,5 +12,5 @@ WORKDIR /model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
-RUN ls data/uploads -la 
+RUN chmod 777 data
 CMD streamlit run main.py
