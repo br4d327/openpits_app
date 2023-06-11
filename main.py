@@ -32,7 +32,7 @@ def img_summary(l_path):
 def image_input(mult_files):
     image_file = st.file_uploader("Upload An Image", type=['png', 'jpeg', 'jpg'], accept_multiple_files=mult_files)
     images_path = []
-    print(image_file)
+    print(image_file, os.path.abspath(os.curdir))
     if mult_files and image_file is not None:
         for img_f in image_file:
             ts = datetime.timestamp(datetime.now())
