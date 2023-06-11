@@ -13,5 +13,5 @@ COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
 RUN sudo chmod 777 data/
-RUN sudo ls -la
+RUN sudo chmod 777 ./
 CMD streamlit run main.py
