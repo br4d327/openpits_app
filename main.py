@@ -36,7 +36,7 @@ def image_input(mult_files):
     if mult_files and image_file is not None:
         for img_f in image_file:
             ts = datetime.timestamp(datetime.now())
-            img_path = os.path.join(r'./data/uploads', str(ts) + '_' + img_f.name)
+            img_path = os.path.join(r'data\uploads', str(ts) + '_' + img_f.name)
 
             with open(img_path, mode="wb") as f:
                 f.write(img_f.getbuffer())
@@ -46,7 +46,7 @@ def image_input(mult_files):
 
     elif image_file is not None:
             ts = datetime.timestamp(datetime.now())
-            img_path = os.path.join(r'./data/uploads', str(ts) + '_' + image_file.name)
+            img_path = os.path.join(r'data\uploads', str(ts) + '_' + image_file.name)
 
             with open(img_path, mode="wb") as f:
                 f.write(image_file.getbuffer())
