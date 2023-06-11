@@ -7,8 +7,6 @@ RUN sudo apt-get update \
  && sudo apt-get install -y libgl1-mesa-glx libgtk2.0-0 libsm6 libxext6 \
  && sudo rm -rf /var/lib/apt/lists/*
 
-RUN pip install opencv-python==4.5.1.48
-
 EXPOSE 8501
 WORKDIR /model
 COPY requirements.txt ./requirements.txt
