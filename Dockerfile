@@ -12,5 +12,5 @@ WORKDIR /model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
-RUN whoami
+RUN ls data/uploads -la 
 CMD streamlit run main.py
