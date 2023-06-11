@@ -8,7 +8,7 @@ RUN sudo apt-get update \
  && sudo rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8501
-WORKDIR /model
+WORKDIR model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
