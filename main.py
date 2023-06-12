@@ -84,7 +84,7 @@ if __name__ == '__main__':
         mult_res = st.button('Detect stones')
     # start
     if result:
-        dev = 'cpu' if deviceoption == 'cpu' else 1
+        dev = 'cpu' if deviceoption == 'cpu' else 0
 
         model.predict(img_dir,
                       save=True,
