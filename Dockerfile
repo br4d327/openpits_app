@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt
 RUN pip install dvc
 COPY . .
 
-RUN dvc pull
+RUN sudo dvc pull
 RUN sudo chmod 777 data/
 RUN sudo chmod 777 models/
 RUN ls -la
