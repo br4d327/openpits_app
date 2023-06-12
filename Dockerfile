@@ -12,7 +12,11 @@ WORKDIR model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
-RUN pwd
-RUN cat /etc/group | grep user
-RUN sudo chmod 777 data/
+
+RUN chmod 777 data/
+RUN ls -la
+RUN python3 model_train.py
+RUN ls -la
+RUN ./script.sh
+
 CMD streamlit run main.py
