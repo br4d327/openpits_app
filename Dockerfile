@@ -15,5 +15,4 @@ COPY . .
 RUN pwd
 RUN cat /etc/group | grep user
 RUN sudo chmod 777 data/
-RUN chown -R user /app/model
 CMD streamlit run main.py
