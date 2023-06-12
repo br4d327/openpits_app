@@ -12,6 +12,7 @@ WORKDIR model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 RUN pip install dvc[gdrive]
+RUN pip install PyDrive2
 COPY . .
 
 RUN sudo chmod 777 data/
