@@ -11,7 +11,7 @@ EXPOSE 8501
 WORKDIR model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
-RUN pip install dvc
+RUN pip install dvc[gdrive]
 COPY . .
 
 RUN sudo chmod 777 data/
