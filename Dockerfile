@@ -17,4 +17,4 @@ COPY . .
 RUN sudo chmod 777 data/
 RUN sudo chmod 777 models/
 
-CMD python3 model_train.py
+CMD dvc pull && python3 model_train.py
