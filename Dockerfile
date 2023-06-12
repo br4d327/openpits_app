@@ -20,4 +20,4 @@ RUN sudo chmod 777 models/
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
 
-CMD python3 model_train.py
+CMD dvc pull && python3 model_train.py
