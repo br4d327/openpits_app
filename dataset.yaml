@@ -1,5 +1,5 @@
-train: data/train
-val: data/val
+train: ./data/train
+val: ./data/val
 
 nc: 2
 
