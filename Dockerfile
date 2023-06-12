@@ -7,7 +7,7 @@ RUN sudo apt-get update \
  && sudo apt-get install -y libgl1-mesa-glx libgtk2.0-0 libsm6 libxext6 \
  && sudo rm -rf /var/lib/apt/lists/*
 
-RUN sudo apt install git wget
+RUN sudo apt install git wget -y
 
 RUN sudo wget \
        https://dvc.org/deb/dvc.list \
@@ -15,7 +15,7 @@ RUN sudo wget \
 RUN sudo wget -qO - https://dvc.org/deb/iterative.asc | gpg --dearmor > packages.iterative.gpg 
 RUN sudo install -o root -g root -m 644 packages.iterative.gpg /etc/apt/trusted.gpg.d/ 
 RUN rm -f packages.iterative.gpg 
-RUN sudo apt update &&
+RUN sudo apt update 
 RUN sudo apt install dvc
 
 EXPOSE 8501
