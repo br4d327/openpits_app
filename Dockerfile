@@ -7,17 +7,6 @@ RUN sudo apt-get update \
  && sudo apt-get install -y libgl1-mesa-glx libgtk2.0-0 libsm6 libxext6 \
  && sudo rm -rf /var/lib/apt/lists/*
 
-RUN sudo apt-get install git  
-
-RUN sudo wget \
-       https://dvc.org/deb/dvc.list \
-       -O /etc/apt/sources.list.d/dvc.list 
-RUN sudo wget -qO - https://dvc.org/deb/iterative.asc | gpg --dearmor > packages.iterative.gpg 
-RUN sudo install -o root -g root -m 644 packages.iterative.gpg /etc/apt/trusted.gpg.d/ 
-RUN rm -f packages.iterative.gpg 
-RUN sudo apt-get update 
-RUN sudo apt-get install dvc
-
 EXPOSE 8501
 WORKDIR model
 COPY requirements.txt ./requirements.txt
