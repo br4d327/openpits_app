@@ -13,6 +13,7 @@ COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
 RUN pwd
+RUN whoami
 RUN sudo chmod 777 data/
 RUN chown -R user:user /app/model
 CMD streamlit run main.py
