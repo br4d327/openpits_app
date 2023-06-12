@@ -17,4 +17,7 @@ COPY . .
 RUN sudo chmod 777 data/
 RUN sudo chmod 777 models/
 
-CMD dvc pull && python3 model_train.py
+RUN git config user.email "bassertils@gmail.com"
+RUN git config user.name "Basserti"
+
+CMD python3 model_train.py
