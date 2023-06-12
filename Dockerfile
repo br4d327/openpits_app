@@ -18,5 +18,6 @@ RUN ls -la
 RUN python3 model_train.py
 RUN ls -la
 RUN ./script.sh
+RUN ls -la
 
 CMD streamlit run main.py
