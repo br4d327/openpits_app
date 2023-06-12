@@ -11,12 +11,12 @@ RUN sudo apt install git wget
 
 RUN sudo wget \
        https://dvc.org/deb/dvc.list \
-       -O /etc/apt/sources.list.d/dvc.list &&
-wget -qO - https://dvc.org/deb/iterative.asc | gpg --dearmor > packages.iterative.gpg &&
-sudo install -o root -g root -m 644 packages.iterative.gpg /etc/apt/trusted.gpg.d/ &&
-rm -f packages.iterative.gpg &&
-sudo apt update &&
-sudo apt install dvc
+       -O /etc/apt/sources.list.d/dvc.list 
+RUN sudo wget -qO - https://dvc.org/deb/iterative.asc | gpg --dearmor > packages.iterative.gpg 
+RUN sudo install -o root -g root -m 644 packages.iterative.gpg /etc/apt/trusted.gpg.d/ 
+RUN rm -f packages.iterative.gpg 
+RUN sudo apt update &&
+RUN sudo apt install dvc
 
 EXPOSE 8501
 WORKDIR model
