@@ -20,4 +20,4 @@ RUN sudo chmod 777 models/
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
 
-CMD dvc remote modify remote_gdrive gdrive_client_id '48282706120-acehq3tpire8beja9fqr4mcomlf88h53.apps.googleusercontent.com' && dvc remote modify remote_gdrive gdrive_client_secret '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' && dvc remote modify remote_gdrive gdrive_acknowledge_abuse true && dvc pull && python3 model_train.py
+CMD dvc pull && python3 model_train.py
