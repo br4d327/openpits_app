@@ -1,0 +1,7 @@
+train: data/train
+val: data/val
+
+nc: 2
+
+names: ['no_class', 'stone']
+
