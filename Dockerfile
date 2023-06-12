@@ -17,7 +17,7 @@ COPY . .
 RUN sudo chmod 777 data/
 RUN sudo chmod 777 models/
 
-RUN git config user.email "bassertils@gmail.com"
-RUN git config user.name "Basserti"
+RUN sudo git config user.email "bassertils@gmail.com"
+RUN sudo git config user.name "Basserti"
 
 CMD python3 model_train.py
