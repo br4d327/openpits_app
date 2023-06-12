@@ -1,0 +1,5 @@
+outs:
+- md5: ea32480edc1a52d660a97549b951378a.dir
+  size: 3226594
+  nfiles: 40
+  path: val
