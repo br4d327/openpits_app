@@ -6,12 +6,21 @@ RUN sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 RUN sudo apt-get update \
  && sudo apt-get install -y libgl1-mesa-glx libgtk2.0-0 libsm6 libxext6 \
  && sudo rm -rf /var/lib/apt/lists/*
+ 
+RUN sudo wget \
+       https://dvc.org/deb/dvc.list \
+       -O /etc/apt/sources.list.d/dvc.list &&
+wget -qO - https://dvc.org/deb/iterative.asc | gpg --dearmor > packages.iterative.gpg &&
+sudo install -o root -g root -m 644 packages.iterative.gpg /etc/apt/trusted.gpg.d/ &&
+rm -f packages.iterative.gpg &&
+sudo apt update &&
+sudo apt install dvc
 
 EXPOSE 8501
 WORKDIR model
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
-RUN sudo pip install dvc
+RUN pip install dvc
 COPY . .
 
 RUN sudo dvc pull
