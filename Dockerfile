@@ -21,4 +21,5 @@ RUN sudo chmod 777 models/
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
 
-CMD dvc pull && python3 model_train.py
+CMD dvc remote modify remote_gdrive gdrive_service_account_user_email \
+              bassertils@gmail.com && dvc pull && python3 model_train.py
