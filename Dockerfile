@@ -6,7 +6,9 @@ RUN sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 RUN sudo apt-get update \
  && sudo apt-get install -y libgl1-mesa-glx libgtk2.0-0 libsm6 libxext6 \
  && sudo rm -rf /var/lib/apt/lists/*
- 
+
+RUN sudo apt install git wget
+
 RUN sudo wget \
        https://dvc.org/deb/dvc.list \
        -O /etc/apt/sources.list.d/dvc.list &&
