@@ -14,5 +14,5 @@ RUN pip install -r requirements.txt
 COPY . .
 RUN pwd
 RUN sudo chmod 777 data/
-RUN sudo chmod 777 ./
+RUN chown -R user:user /app/model
 CMD streamlit run main.py
