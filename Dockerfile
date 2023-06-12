@@ -14,6 +14,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 RUN sudo chmod 777 data/
+RUN sudo chmod 777 models/
 RUN ls -la
 RUN python3 model_train.py
 RUN ls -la
