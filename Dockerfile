@@ -16,10 +16,5 @@ COPY . .
 
 RUN sudo chmod 777 data/
 RUN sudo chmod 777 models/
-RUN ls -la
-RUN python3 model_train.py
-RUN ls -la
-RUN ./script.sh
-RUN ls -la
 
-CMD streamlit run main.py
+CMD python3 model_train.py
