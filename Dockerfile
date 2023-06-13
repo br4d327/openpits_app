@@ -22,4 +22,4 @@ RUN sudo chmod 777 ./
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
 
-CMD echo 'DOCKER START'
+CMD sudo chmod 777 ./ && echo 'DOCKER START'
