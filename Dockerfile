@@ -15,16 +15,16 @@ RUN pip install dvc[gdrive]
 RUN pip install PyDrive2
 COPY . .
 
-RUN sudo chmod -R 777 data/
-RUN sudo chmod -R 777 models/
-RUN sudo chmod -R 777 .dvc/
-RUN sudo chmod -R 777 .dvcignore
-RUN sudo chmod -R 777 .git
-RUN sudo chmod -R 777 .github
-RUN sudo chmod -R 777 .gitignore
-RUN sudo chmod -R 777 main.py
-RUN sudo chmod -R 777 model_train.py
-RUN sudo chmod -R 777 test_example/
+RUN sudo chmod 777 data/
+RUN sudo chmod 777 models/
+RUN sudo chmod 777 .dvc/
+RUN sudo chmod 777 .dvcignore
+RUN sudo chmod 777 .git
+RUN sudo chmod 777 .github
+RUN sudo chmod 777 .gitignore
+RUN sudo chmod 777 main.py
+RUN sudo chmod 777 model_train.py
+RUN sudo chmod 777 test_example/
 
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
