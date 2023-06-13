@@ -17,6 +17,8 @@ COPY . .
 
 RUN sudo chmod 777 data/
 RUN sudo chmod 777 models/
+RUN cd ..
+RUN sudo chmod 777 model/
 
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
