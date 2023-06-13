@@ -19,6 +19,10 @@
 
 ## Как запустить
 1. Склонировать master-ветку репозитория
+2. Настроить окружение командой
+```bash
+pip install -r requirements.txt
+```
 2. В терминале выполнить команду
 ```bash
 streamlit run main.py
