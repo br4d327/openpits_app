@@ -17,9 +17,9 @@ COPY . .
 
 RUN sudo chmod 777 data/
 RUN sudo chmod 777 models/
-RUN sudo chmod 777 ./
+RUN sudo chmod -R 777 ./
 
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
 
-CMD sudo chmod 777 ./ && echo 'DOCKER START'
+CMD echo 'DOCKER START'
