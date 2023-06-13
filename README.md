@@ -23,7 +23,7 @@
 ```bash
 pip install -r requirements.txt
 ```
-2. В терминале выполнить команду
+3. В терминале выполнить команду
 ```bash
 streamlit run main.py
 ```
