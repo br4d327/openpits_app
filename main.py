@@ -22,7 +22,7 @@ def img_summary(l_path):
     avg_width = np.mean([float(stone.split(' ')[3]) * W for stone in stones])
     avg_height = np.mean([float(stone.split(' ')[4]) * H for stone in stones])
     print(l_path)
-    t = pd.DataFrame([{'file_name': l_path.split('_')[-1][:-4],
+    t = pd.DataFrame([{'file_name': l_path.split('#')[-1][:-4],
                        'total_stones': total_stones,
                        'avg_width': avg_width,
                        'avg_height': avg_height}])
@@ -32,11 +32,11 @@ def img_summary(l_path):
 def image_input(mult_files):
     image_file = st.file_uploader("Upload An Image", type=['png', 'jpeg', 'jpg'], accept_multiple_files=mult_files)
     images_path = []
-    print(image_file, os.path.abspath(os.curdir))
+    print(image_file)
     if mult_files and image_file is not None:
         for img_f in image_file:
             ts = datetime.timestamp(datetime.now())
-            img_path = os.path.join(r'data/uploads', str(ts) + '#' + img_f.name)
+            img_path = os.path.join(r'data\uploads', str(ts) + '#' + img_f.name)
 
             with open(img_path, mode="wb") as f:
                 f.write(img_f.getbuffer())
@@ -46,7 +46,7 @@ def image_input(mult_files):
 
     elif image_file is not None:
             ts = datetime.timestamp(datetime.now())
-            img_path = os.path.join(r'data/uploads', str(ts) + '#' + image_file.name)
+            img_path = os.path.join(r'data\uploads', str(ts) + '#' + image_file.name)
 
             with open(img_path, mode="wb") as f:
                 f.write(image_file.getbuffer())
@@ -56,6 +56,7 @@ def image_input(mult_files):
 st.title('Stone detector')
 
 if __name__ == '__main__':
+    res_table = pd.DataFrame()
     detection_mode = st.sidebar.radio("Select detection mode.", ['Single file', 'Multiple files'], disabled=False, index=0)
     detection_mode = 1 if detection_mode == 'Multiple files' else 0
 
@@ -83,14 +84,12 @@ if __name__ == '__main__':
         mult_res = st.button('Detect stones')
     # start
     if result:
-        dev = 'cpu' if deviceoption == 'cpu' else 0
+        dev = 'cpu' if deviceoption == 'cpu' else 1
 
         model.predict(img_dir,
                       save=True,
                       save_txt=True,
-                      device=dev,
-                      hide_conf=True,
-                      hide_labels=True)
+                      device=dev,)
 
         all_sub_dirs = ['./runs/detect/'+d for d in os.listdir('./runs/detect')]
         latest_dir = max(all_sub_dirs, key=os.path.getctime)
@@ -110,15 +109,17 @@ if __name__ == '__main__':
             st.image(img_, caption='Model Prediction', use_column_width='always')
 
     if mult_res:
-        dev = 'cpu' if deviceoption == 'cpu' else 0
+        dev = 'cpu' if deviceoption == 'cpu' else 1
 
         for file in img_dir:
             model.predict(file,
                           save=True,
                           save_txt=True,
-                          device=dev,
-                          hide_conf=True,
-                          hide_labels=True)
+                          device=dev,)
+
+        # hide_conf = True,
+        # hide_labels = True
+
 
         all_sub_dirs = ['./runs/detect/' + d for d in os.listdir('./runs/detect')]
         latest_dir = max(all_sub_dirs, key=os.path.getctime)
@@ -132,18 +133,15 @@ if __name__ == '__main__':
         res_table = pd.DataFrame()
         for file in os.listdir(label_latest_dir):
             print(file)
-            if file.split('/')[-1][:-4] in current_uploaded_img: 
+            if file.split('/')[-1][:-4] in current_uploaded_img:
                 print(label_latest_dir + file)
                 table = img_summary(label_latest_dir + file)
                 res_table = pd.concat([res_table, table])
 
-        res_table.reset_index(drop=True)
+        res_table.reset_index(drop=True, inplace=True)
+        st.table(res_table)
         st.text('Summary')
         st.table(pd.DataFrame([{'total_files': len(res_table),
                                 'avg_stones': res_table.total_stones.mean(),
                                 'avg_width': res_table.avg_width.mean(),
                                 'avg_height': res_table.avg_height.mean()}]))
-
-
-
-
