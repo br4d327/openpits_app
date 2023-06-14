@@ -16,7 +16,6 @@ RUN pip install PyDrive2
 COPY . .
 
 RUN sudo chmod -R 777 data/
-RUN sudo chmod -R 777 models/
 RUN sudo chmod -R 777 .dvc/
 RUN sudo chmod -R 777 .dvcignore
 RUN sudo chmod -R 777 .git
