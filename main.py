@@ -11,7 +11,7 @@ W = 409
 
 @st.cache_resource()
 def load_model():
-    return YOLO('models/best.pt')
+    return YOLO('models/yolov8m.pt')
 
 
 def img_summary(l_path):
