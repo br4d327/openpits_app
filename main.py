@@ -134,6 +134,7 @@ if __name__ == '__main__':
         res_table = pd.DataFrame()
         for file in os.listdir(label_latest_dir):
             print(file)
+            st.text(file)
             if file.split('/')[-1][:-4] in current_uploaded_img:
                 print(label_latest_dir + file)
                 table = img_summary(label_latest_dir + file)
