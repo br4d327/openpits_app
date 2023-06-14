@@ -129,18 +129,18 @@ if __name__ == '__main__':
 
         current_uploaded_img = [file.split('//')[-1][:-4] for file in img_dir]
         print(current_uploaded_img)
-        st.text(current_uploaded_img)
 
         res_table = pd.DataFrame()
         for file in os.listdir(label_latest_dir):
             print(file)
-            st.text(file)
             
             print(label_latest_dir + file)
             table = img_summary(label_latest_dir + file)
             res_table = pd.concat([res_table, table])
 
         res_table.reset_index(drop=True)
+        st.text('Images')
+        res_table.loc[(res_table.file_name), 'file_name'] = str(res_table.file_name)[str(res_table.file_name).rfind('#'):]
         st.table(res_table)
         st.text('Summary')
         st.table(pd.DataFrame([{'total_files': len(res_table),
