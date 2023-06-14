@@ -84,7 +84,7 @@ if __name__ == '__main__':
         mult_res = st.button('Detect stones')
     # start
     if result:
-        dev = 'cpu' if deviceoption == 'cpu' else 1
+        dev = 'cpu' if deviceoption == 'cpu' else 0
 
         model.predict(img_dir,
                       save=True,
@@ -109,7 +109,7 @@ if __name__ == '__main__':
             st.image(img_, caption='Model Prediction', use_column_width='always')
 
     if mult_res:
-        dev = 'cpu' if deviceoption == 'cpu' else 1
+        dev = 'cpu' if deviceoption == 'cpu' else 0
 
         for file in img_dir:
             model.predict(file,
