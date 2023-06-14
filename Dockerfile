@@ -25,7 +25,6 @@ RUN sudo chmod -R 777 .gitignore
 RUN sudo chmod -R 777 main.py
 RUN sudo chmod -R 777 model_train.py
 RUN sudo chmod -R 777 test_example/
-models.dvc
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
 
