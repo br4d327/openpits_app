@@ -111,7 +111,7 @@ if __name__ == '__main__':
             st.image(img_, caption='Model Prediction', use_column_width='always')
 
     if mult_res:
-        dev = 'cpu' if deviceoption == 'cpu' else 1
+        dev = 'cpu' if deviceoption == 'cpu' else 0
 
         for file in img_dir:
             model.predict(file,
