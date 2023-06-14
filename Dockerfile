@@ -19,12 +19,13 @@ RUN sudo chmod -R 777 data/
 RUN sudo chmod -R 777 .dvc/
 RUN sudo chmod -R 777 .dvcignore
 RUN sudo chmod -R 777 .git
+RUN sudo chmod -R 777 models.dvc
 RUN sudo chmod -R 777 .github
 RUN sudo chmod -R 777 .gitignore
 RUN sudo chmod -R 777 main.py
 RUN sudo chmod -R 777 model_train.py
 RUN sudo chmod -R 777 test_example/
-
+models.dvc
 RUN sudo git config user.email "bassertils@gmail.com"
 RUN sudo git config user.name "Basserti"
 
