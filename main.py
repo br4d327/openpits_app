@@ -56,7 +56,6 @@ def image_input(mult_files):
 st.title('Stone detector')
 
 if __name__ == '__main__':
-
     detection_mode = st.sidebar.radio("Select detection mode.", ['Single file', 'Multiple files'], disabled=False, index=0)
     detection_mode = 1 if detection_mode == 'Multiple files' else 0
 
@@ -133,10 +132,10 @@ if __name__ == '__main__':
         res_table = pd.DataFrame()
         for file in os.listdir(label_latest_dir):
             print(file)
-            
-            print(label_latest_dir + file)
-            table = img_summary(label_latest_dir + file)
-            res_table = pd.concat([res_table, table])
+            if file.split('/')[-1][:-4] in current_uploaded_img: 
+                print(label_latest_dir + file)
+                table = img_summary(label_latest_dir + file)
+                res_table = pd.concat([res_table, table])
 
         res_table.reset_index(drop=True)
         st.text('Summary')
