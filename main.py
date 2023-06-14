@@ -139,9 +139,6 @@ if __name__ == '__main__':
             res_table = pd.concat([res_table, table])
 
         res_table.reset_index(drop=True)
-        st.text('Images')
-        res_table.loc[(res_table.file_name), 'file_name'] = str(res_table.file_name)[str(res_table.file_name).rfind('#'):]
-        st.table(res_table)
         st.text('Summary')
         st.table(pd.DataFrame([{'total_files': len(res_table),
                                 'avg_stones': res_table.total_stones.mean(),
