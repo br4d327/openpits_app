@@ -11,7 +11,7 @@ W = 409
 
 @st.cache_resource()
 def load_model():
-    return YOLO('runs/detect/train/weights/best.pt')
+    return YOLO('models/best.pt')
 
 
 def img_summary(l_path):
@@ -36,7 +36,7 @@ def image_input(mult_files):
     if mult_files and image_file is not None:
         for img_f in image_file:
             ts = datetime.timestamp(datetime.now())
-            img_path = os.path.join(r'data/uploads', str(ts) + '_' + img_f.name)
+            img_path = os.path.join(r'data/uploads', str(ts) + '#' + img_f.name)
 
             with open(img_path, mode="wb") as f:
                 f.write(img_f.getbuffer())
@@ -46,7 +46,7 @@ def image_input(mult_files):
 
     elif image_file is not None:
             ts = datetime.timestamp(datetime.now())
-            img_path = os.path.join(r'data/uploads', str(ts) + '_' + image_file.name)
+            img_path = os.path.join(r'data/uploads', str(ts) + '#' + image_file.name)
 
             with open(img_path, mode="wb") as f:
                 f.write(image_file.getbuffer())
@@ -111,7 +111,7 @@ if __name__ == '__main__':
             st.image(img_, caption='Model Prediction', use_column_width='always')
 
     if mult_res:
-        dev = 'cpu' if deviceoption == 'cpu' else 1
+        dev = 'cpu' if deviceoption == 'cpu' else 0
 
         for file in img_dir:
             model.predict(file,
@@ -127,25 +127,23 @@ if __name__ == '__main__':
         print(img_dir)
         print('#'*10)
 
-        current_uploaded_img = [file.split('\\')[-1][:-4] for file in img_dir]
+        current_uploaded_img = [file.split('//')[-1][:-4] for file in img_dir]
         print(current_uploaded_img)
 
         res_table = pd.DataFrame()
         for file in os.listdir(label_latest_dir):
             print(file)
-            if file.split('/')[-1][:-4] in current_uploaded_img:
-                print(label_latest_dir + file)
-                table = img_summary(label_latest_dir + file)
-                res_table = pd.concat([res_table, table])
+            
+            print(label_latest_dir + file)
+            table = img_summary(label_latest_dir + file)
+            res_table = pd.concat([res_table, table])
 
         res_table.reset_index(drop=True)
-        st.table(res_table)
         st.text('Summary')
         st.table(pd.DataFrame([{'total_files': len(res_table),
                                 'avg_stones': res_table.total_stones.mean(),
                                 'avg_width': res_table.avg_width.mean(),
                                 'avg_height': res_table.avg_height.mean()}]))
-
 
 
 
