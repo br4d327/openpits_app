@@ -127,7 +127,7 @@ if __name__ == '__main__':
         print(img_dir)
         print('#'*10)
 
-        current_uploaded_img = [file.split('//')[-1][:-4] for file in img_dir]
+        current_uploaded_img = [file.split('\\')[-1][:-4] for file in img_dir]
         print(current_uploaded_img)
 
         res_table = pd.DataFrame()
