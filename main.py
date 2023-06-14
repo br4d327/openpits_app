@@ -134,6 +134,7 @@ if __name__ == '__main__':
         for file in os.listdir(label_latest_dir):
             print(file)
             if file.split('/')[-1][:-4] in current_uploaded_img:
+                st.text(label_latest_dir + file)
                 print(label_latest_dir + file)
                 table = img_summary(label_latest_dir + file)
                 res_table = pd.concat([res_table, table])
