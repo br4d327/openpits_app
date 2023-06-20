@@ -5,12 +5,16 @@ from PIL import Image
 # Import the functions from your web application code
 from main import img_summary, load_model, image_input, YOLO
 
+
 # Test img_summary function
-@pytest.mark.parametrize("field, expected_result", 
-                        [('file_name', 'labels'),
-                        ('total_stones', 2),
-                        ('avg_width', pytest.approx(0.35 * 409, rel=1e-2)),
-                        ('avg_height', pytest.approx(0.45 * 518, rel=1e-2))])
+@pytest.mark.parametrize(
+    "field, expected_result", [
+        ('file_name', 'labels'),
+        ('total_stones', 2),
+        ('avg_width', pytest.approx(0.35 * 409, rel=1e-2)),
+        ('avg_height', pytest.approx(0.45 * 518, rel=1e-2))
+        ]
+        )
 def test_img_summary(field, expected_result):
     # Create a temporary label file for testing
     test_labels = "1 0.2 0.3 0.4 0.5\n2 0.1 0.2 0.3 0.4\n"
@@ -32,6 +36,7 @@ def test_model_isnt_none():
     model = load_model()
     # Assert that the model is loaded successfully
     assert model is not None
+
 
 def test_model_is_yolo():
     model = load_model()
@@ -91,4 +96,3 @@ def test_model_is_yolo():
 #     # Remove the temporary image files
 #     os.remove('test_image1.jpg')
 #     os.remove('test_image2.jpg')
-

@@ -9,6 +9,7 @@ import numpy as np
 H = 518
 W = 409
 
+
 @st.cache_resource()
 def load_model():
     return YOLO('models/best.pt')
@@ -30,13 +31,19 @@ def img_summary(l_path):
 
 
 def image_input(mult_files):
-    image_file = st.file_uploader("Upload An Image", type=['png', 'jpeg', 'jpg'], accept_multiple_files=mult_files)
+    image_file = st.file_uploader(
+        "Upload An Image",
+        type=['png', 'jpeg', 'jpg'],
+        accept_multiple_files=mult_files
+        )
     images_path = []
     print(image_file)
     if mult_files and image_file is not None:
         for img_f in image_file:
             ts = datetime.timestamp(datetime.now())
-            img_path = os.path.join(r'data\uploads', str(ts) + '_' + img_f.name)
+            img_path = os.path.join(
+                r'data\uploads', str(ts) + '_' + img_f.name
+                )
 
             with open(img_path, mode="wb") as f:
                 f.write(img_f.getbuffer())
@@ -45,25 +52,36 @@ def image_input(mult_files):
         return images_path
 
     elif image_file is not None:
-            ts = datetime.timestamp(datetime.now())
-            img_path = os.path.join(r'data\uploads', str(ts) + '_' + image_file.name)
+        ts = datetime.timestamp(datetime.now())
+        img_path = os.path.join(
+            r'data\uploads', str(ts) + '_' + image_file.name
+            )
 
-            with open(img_path, mode="wb") as f:
-                f.write(image_file.getbuffer())
-            return img_path
+        with open(img_path, mode="wb") as f:
+            f.write(image_file.getbuffer())
+        return img_path
 
 
 st.title('Stone detector')
 
 if __name__ == '__main__':
 
-    detection_mode = st.sidebar.radio("Select detection mode.", ['Single file', 'Multiple files'], disabled=False, index=0)
+    detection_mode = st.sidebar.radio(
+        "Select detection mode.",
+        ['Single file', 'Multiple files'],
+        disabled=False,
+        index=0
+        )
     detection_mode = 1 if detection_mode == 'Multiple files' else 0
 
     if torch.cuda.is_available():
-        deviceoption = st.sidebar.radio("Select compute Device.", ['cpu', 'cuda'], disabled=False, index=1)
+        deviceoption = st.sidebar.radio(
+            "Select compute Device.", ['cpu', 'cuda'], disabled=False, index=1
+            )
     else:
-        deviceoption = st.sidebar.radio("Select compute Device.", ['cpu', 'cuda'], disabled=True, index=0)
+        deviceoption = st.sidebar.radio(
+            "Select compute Device.", ['cpu', 'cuda'], disabled=True, index=0
+            )
 
     # call Model prediction--
     model = load_model()
@@ -93,12 +111,14 @@ if __name__ == '__main__':
                       hide_conf=True,
                       hide_labels=True)
 
-        all_sub_dirs = ['./runs/detect/'+d for d in os.listdir('./runs/detect')]
+        all_sub_dirs = ['./runs/detect/' + d for d in os.listdir(
+            './runs/detect')]
         latest_dir = max(all_sub_dirs, key=os.path.getctime)
         all_sub_files = [latest_dir + '/' + d for d in os.listdir(latest_dir)]
         latest_file = max(all_sub_files, key=os.path.getctime)
 
-        all_label_files =[latest_dir+'/labels/' + d for d in os.listdir(latest_dir+'/labels')]
+        all_label_files = [latest_dir + '/labels/' + d for d in os.listdir(
+            latest_dir + '/labels')]
         latest_label_path = max(all_label_files, key=os.path.getctime)
 
         # --Display predicton
@@ -108,7 +128,9 @@ if __name__ == '__main__':
         st.table(sum_table)
 
         with col2:
-            st.image(img_, caption='Model Prediction', use_column_width='always')
+            st.image(
+                img_, caption='Model Prediction', use_column_width='always'
+                )
 
     if mult_res:
         dev = 'cpu' if deviceoption == 'cpu' else 1
@@ -121,11 +143,12 @@ if __name__ == '__main__':
                           hide_conf=True,
                           hide_labels=True)
 
-        all_sub_dirs = ['./runs/detect/' + d for d in os.listdir('./runs/detect')]
+        all_sub_dirs = ['./runs/detect/' + d for d in os.listdir(
+            './runs/detect')]
         latest_dir = max(all_sub_dirs, key=os.path.getctime)
         label_latest_dir = latest_dir + '/labels/'
         print(img_dir)
-        print('#'*10)
+        print('#' * 10)
 
         current_uploaded_img = [file.split('\\')[-1][:-4] for file in img_dir]
         print(current_uploaded_img)
@@ -145,8 +168,3 @@ if __name__ == '__main__':
                                 'avg_stones': res_table.total_stones.mean(),
                                 'avg_width': res_table.avg_width.mean(),
                                 'avg_height': res_table.avg_height.mean()}]))
-
-
-
-
-
